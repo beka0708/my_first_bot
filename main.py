@@ -1,3 +1,5 @@
+import random
+
 from aiogram import Bot, Dispatcher, executor, types
 from dotenv import load_dotenv
 from os import getenv
@@ -44,10 +46,13 @@ async def info(message: types.Message):
 @dp.message_handler(commands=["picture"])
 async def picture(message: types.Message):
     print(message)
-
-    with open('./imagess/jarvis.jpg', 'rb') as jarvis:
-        await message.answer_photo(
-            photo=jarvis,
+    ph = (
+        'imagess/jarvis.jpg',
+        'imagess/jarvis2.jpg'
+    )
+    photo = open(random.choice(ph), 'rb')
+    await message.answer_photo(
+            photo=photo,
             caption='"Jarvis" готов к вашим услугам...'
         )
 
